@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cool.happycoding</groupId>
+        <artifactId>spring-ws</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-ws-server</artifactId>
+    <name>spring-ws-server</name>
+    <description>ws server</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>cool.happycoding</groupId>
+            <artifactId>happy-code-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+<!--                    如果不配置，默认将按照xsd文件中定义的namespace进行 例如：http://happycoding.cool/ws/server/schema 默认为：cool.happycoding.ws.server.schema -->
+<!--                    <packageName>cool.happycoding.ws.server.schema</packageName>-->
+<!--                    是否删除已生成的代码，注意是删除，而不是覆盖，即会删除原有的包目录，需要非常小心如果里面有别的子包也会被删除，因此需要配置成false-->
+                    <clearOutputDir>false</clearOutputDir>
+                   <sources>
+                       <source>
+                           ${project.basedir}/src/main/resources/xsd
+                       </source>
+                   </sources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
