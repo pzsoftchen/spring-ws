@@ -18,8 +18,8 @@
             <artifactId>happy-code-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>cool.happycoding</groupId>
-            <artifactId>happy-code-starter-swagger</artifactId>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -35,6 +35,30 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <schemaDirectory>${basedir}/src/main/resources/wsdl</schemaDirectory>
+                    <schemaIncludes>*.wsdl</schemaIncludes>
+                    <generatePackage>cool.happycoding.ws.client.wsdl</generatePackage>
+                    <generateDirectory>${basedir}/src/main/java</generateDirectory>
+<!--                    <schemas>-->
+<!--                        <schema>-->
+<!--                            <url>http://localhost:8080/ws/countries.wsdl</url>-->
+<!--                        </schema>-->
+<!--                    </schemas>-->
                 </configuration>
             </plugin>
         </plugins>
