@@ -1,8 +1,10 @@
 package cool.happycoding.ws.client.config;
 
 import cool.happycoding.ws.client.proxy.CountryClient;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 /**
@@ -14,10 +16,12 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 public class CountryConfiguration {
 
     @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
+        marshaller.setPackagesToScan();
         marshaller.setContextPath("cool.happycoding.ws.client.wsdl");
         return marshaller;
     }

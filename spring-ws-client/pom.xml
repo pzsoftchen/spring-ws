@@ -18,8 +18,8 @@
             <artifactId>happy-code-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-ws-core</artifactId>
+            <groupId>cool.happycoding</groupId>
+            <artifactId>happy-code-starter-ws-client</artifactId>
         </dependency>
     </dependencies>
 

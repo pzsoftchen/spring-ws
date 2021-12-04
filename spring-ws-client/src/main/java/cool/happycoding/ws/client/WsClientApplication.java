@@ -1,5 +1,6 @@
 package cool.happycoding.ws.client;
 
+import cool.happycoding.code.ws.client.annotation.EnableWsClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author pengzhenchen 2021/10/22 8:29 下午
  */
+
+@EnableWsClients
 @SpringBootApplication
 public class WsClientApplication {
 
